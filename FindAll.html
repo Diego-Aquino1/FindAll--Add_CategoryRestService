@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+    
+	$.ajax({
+		type: "GET",
+		url: "http://localhost:8080/CategoryRestService/FindAll", 
+		success: function(result){
+			console.log(result);
+			var obj = result,  
+            ul = $("<ul>"); 
+			for (var i = 0, l = obj.length; i < l; ++i) {
+				ul.append("<li>" + obj[i].id + " - " + obj[i].name + " -- " + obj[i].description + "</li>");
+			}
+			$("#div1").html(ul);
+    }});
+  });
+});
+</script>
+</head>
+<body>
+
+<div id="div1"><h2>Find All Categories</h2></div>
+
+<button>ALL CATEGORIES! </button>
+
+</body>
+</html>
